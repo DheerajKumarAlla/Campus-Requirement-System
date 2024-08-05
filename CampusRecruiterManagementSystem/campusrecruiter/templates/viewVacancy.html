@@ -1,0 +1,44 @@
+{% extends 'candidateNavbar.html' %}
+{% block main %}
+
+
+<div class="card shadow m-5">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="border-bottom: 2px solid green">View Vacancy</h5>
+        <div class="container mt-3">
+            <h1 class="text-success text-center"></h1>
+
+            <table id="example" class="table table-striped table-bordered">
+                <thead style="background-color: #9e9e9e">
+                <tr>
+                    <th class="text-danger">S.NO</th>
+                    <th class="text-danger">Company Name</th>
+                    <th class="text-danger">Job Title</th>
+                    <th class="text-danger"> Apply Start Date</th>
+                    <th class="text-danger"> Apply Last Date</th>
+                    <th class="text-danger">Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for i in vacancy %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.companies.user.first_name}}</td>
+                    <td>{{i.JobTitle}}</td>
+                    <td>{{i.ApplyDate}}</td>
+                    <td>{{i.LastDate}}</td>
+                    {% if i.id in li %}
+                    <td><span style="color: green;">Applied</span></td>
+                    {% else %}
+                    <td><a href="{% url 'viewVacancyDetails' i.id %}" class="btn btn-primary">Apply For Job</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
